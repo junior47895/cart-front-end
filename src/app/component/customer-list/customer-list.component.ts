@@ -16,10 +16,26 @@ export class CustomerListComponent implements OnInit,OnDestroy {
 
   constructor(public customerService:CustomerService) { }
 
+  delete(customer:Customer):void{
+    this.customerService.delete(customer.email).subscribe(ok=>{
+      // this.showMsg=true;
+      // this.messages=[""];
+      // this.messages[0]="El customer se borro con exito";
+      this.findAll();
+    },err=>{
+      // this.showMsg=true;
+      // this.messages=err.error.error;
+    });
+  }
+
+  findAll():void{
+    this.sub=this.customerService.findAll().subscribe(data=>{
+      this.customers=data;
+    });
+  }
+
   ngOnInit(): void {
-      this.sub=this.customerService.findAll().subscribe(data=>{
-        this.customers=data;
-      });
+    this.findAll();
   }
 
   ngOnDestroy():void{

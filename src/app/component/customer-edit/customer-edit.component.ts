@@ -47,4 +47,15 @@ export class CustomerEditComponent implements OnInit {
     });
   }
 
+  delete():void{
+    this.customerService.delete(this.customer.email).subscribe(ok=>{
+      this.showMsg=true;
+      this.messages=[""];
+      this.messages[0]="El customer se borro con exito";
+    },err=>{
+      this.showMsg=true;
+      this.messages=err.error.error;
+    });
+  }
+
 }

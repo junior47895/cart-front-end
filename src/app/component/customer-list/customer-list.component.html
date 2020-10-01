@@ -2,6 +2,9 @@
 <br/>
 <br/>
 <h2>Customer List</h2>
+<div *ngIf="customers">
+  <h3>{{customers.length}}</h3>
+</div>
 <table border="1">
   <thead>
     <tr>
@@ -22,7 +25,7 @@
       <td>{{customer.enable}}</td>
       <td>
         <a [routerLink]="['/customer-edit',customer.email]">Edit</a>
-        <a>Delete</a>
+        <a (click)="delete(customer)" >Delete</a>
       </td>
     </tr>
   </tbody>
