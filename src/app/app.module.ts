@@ -6,16 +6,20 @@ import { AppComponent } from './app.component';
 import { CustomerService } from './service/customer.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CustomerListComponent } from './component/customer-list/customer-list.component';
+import { FormsModule } from '@angular/forms';
+import { CustomerSaveComponent } from './component/customer-save/customer-save.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CustomerListComponent
+    CustomerListComponent,
+    CustomerSaveComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [CustomerService],
   bootstrap: [AppComponent]

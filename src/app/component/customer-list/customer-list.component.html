@@ -2,7 +2,23 @@
 <br/>
 <br/>
 <h2>Customer List</h2>
-
-<li *ngFor="let customer of customers" >
-    {{customer.email}}
-</li>
+<table border="1">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th>Enable</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let customer of customers">
+      <td>{{customer.email}}</td>
+      <td>{{customer.name}}</td>
+      <td>{{customer.address}}</td>
+      <td>{{customer.phone}}</td>
+      <td>{{customer.enable}}</td>
+    </tr>
+  </tbody>
+</table>
