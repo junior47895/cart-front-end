@@ -10,6 +10,7 @@
       <th>Address</th>
       <th>Phone</th>
       <th>Enable</th>
+      <th>Opciones</th>
     </tr>
   </thead>
   <tbody>
@@ -19,6 +20,10 @@
       <td>{{customer.address}}</td>
       <td>{{customer.phone}}</td>
       <td>{{customer.enable}}</td>
+      <td>
+        <a [routerLink]="['/customer-edit',customer.email]">Edit</a>
+        <a>Delete</a>
+      </td>
     </tr>
   </tbody>
 </table>
