@@ -31,14 +31,15 @@ export class CustomerSaveComponent implements OnInit {
 
   save():void{
     this.customerService.save(this.customer).subscribe(ok=>{
-      this.showMsg=true;
+      this.showMsg=false;
       this.messages=[""];
       this.messages[0]="El customer se grabo con exito";
       this.router.navigate(['/customer-list']);
       swal.fire('Customer saved', `the customer has been saved successfully`, 'success');
     },err=>{
-      this.showMsg=true;
+      this.showMsg=false;
       this.messages=err.error.error;
+      swal.fire({icon: 'error',title : 'Customer no saved', text: `${this.messages}`});
     });
   }
 

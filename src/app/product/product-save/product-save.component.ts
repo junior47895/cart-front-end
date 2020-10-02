@@ -35,12 +35,13 @@ export class ProductSaveComponent implements OnInit {
     this.productService.save(this.product).subscribe(ok=>{
       this.showMsg=true;
       this.messages=[""];
-      this.messages[0]="El customer se grabo con exito";
+      this.messages[0]="El producto se grabo con exito";
       this.router.navigate(['/product-list']);
       swal.fire('Product saved', `the product has been saved successfully`, 'success');
     },err=>{
-      this.showMsg=true;
+      this.showMsg=false;
       this.messages=err.error.error;
+      swal.fire({icon: 'error',title : 'product no saved', text: `${this.messages}`});
     });
   }
 }
