@@ -1,11 +1,10 @@
-<br/>
-<br/>
-<br/>
-<h2>Customer List</h2>
+
+
 <div *ngIf="customers">
-  <h3>{{customers.length}}</h3>
+  <h2 style="display: inline-block;">Customer List</h2>
+  <h3 class="total-records">Total records: <span class="badge badge-warning">{{customers.length}}</span> </h3>
 </div>
-<table border="1">
+<table class="table table-striped table-bordered table-hover">
   <thead>
     <tr>
       <th>Email</th>
@@ -24,8 +23,8 @@
       <td>{{customer.phone}}</td>
       <td>{{customer.enable}}</td>
       <td>
-        <a [routerLink]="['/customer-edit',customer.email]">Edit</a>
-        <a (click)="delete(customer)" >Delete</a>
+        <a class="btn btn-primary btn-sm" [routerLink]="['/customer-edit',customer.email]">Edit</a>
+        <a class="btn btn-danger btn-sm mx-1" style="color: white;" type="button" (click)="delete(customer)" >Delete</a>
       </td>
     </tr>
   </tbody>

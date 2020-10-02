@@ -1,0 +1,46 @@
+<div *ngIf="showMsg">
+  <p *ngFor="let msg of messages">
+    {{msg}}
+  </p>
+</div>
+
+<div class="card bg-dark text-white" *ngIf="product">
+  <div class="card-header"><h4>Product edit form</h4></div>
+    <div class="card-body">
+    <form #customerForm="ngForm">
+      <div class="form-group">
+        <input class="form-control" disabled="true" type="text" name="proId"      id="proId"    placeholder="proId"         [(ngModel)]="product.proId"/><br/>
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="text" name="detail"     id="detail"   placeholder="detail"         [(ngModel)]="product.detail"/><br/>
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="text" name="image"      id="image"      placeholder="image"        [(ngModel)]="product.image"/><br/>
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="text" name="name"       id="name"       placeholder="name"         [(ngModel)]="product.name"/><br/>
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="number" name="price"     id="price"    placeholder="price"          [(ngModel)]="product.price"/><br/>
+      </div>
+      <div class="form-group">
+        <select class="form-control" [(ngModel)]="product.enable" name="enable">
+          <option *ngFor="let enable of enables" [value]="enable.id">
+            {{enable.name}}
+          </option>
+        </select>
+      </div>
+
+      <button class="btn btn-primary"  (click)="update()">
+        Update
+      </button>
+      <button class="btn btn-danger mx-2" (click)="delete()">
+        Delete
+      </button>
+      <button class="btn btn-info" routerLink="/product-list">
+        Cancel
+      </button>
+    </form>
+  </div>
+</div>
+

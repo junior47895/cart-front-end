@@ -4,6 +4,7 @@ import { Customer } from 'src/app/domain/customer';
 import { Enable } from 'src/app/domain/enable';
 import { CustomerService } from 'src/app/service/customer.service';
 import { EnableService } from 'src/app/service/enable.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-customer-edit',
@@ -41,9 +42,12 @@ export class CustomerEditComponent implements OnInit {
       this.showMsg=true;
       this.messages=[""];
       this.messages[0]="El customer se modifico con exito";
+      this.router.navigate(['/customer-list']);
+      swal.fire('Customer updated', `the customer has been updated successfully`, 'success');
     },err=>{
-      this.showMsg=true;
+      this.showMsg=false;
       this.messages=err.error.error;
+      swal.fire({icon: 'error',title : 'Customer no updated', text: `${this.messages}`});
     });
   }
 
@@ -52,9 +56,12 @@ export class CustomerEditComponent implements OnInit {
       this.showMsg=true;
       this.messages=[""];
       this.messages[0]="El customer se borro con exito";
+      this.router.navigate(['/customer-list']);
+      swal.fire('Customer deleted', `the customer has been deleted successfully`, 'success');
     },err=>{
       this.showMsg=true;
       this.messages=err.error.error;
+      swal.fire({icon: 'error',title : 'Customer no deleted', text: `${this.messages}`});
     });
   }
 

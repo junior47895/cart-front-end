@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Customer } from 'src/app/domain/customer';
 import { CustomerService } from 'src/app/service/customer.service';
+import swal from 'sweetalert2';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class CustomerListComponent implements OnInit,OnDestroy {
       // this.messages=[""];
       // this.messages[0]="El customer se borro con exito";
       this.findAll();
+      swal.fire('Customer deleted', `the customer has been deleted successfully`, 'success');
     },err=>{
       // this.showMsg=true;
       // this.messages=err.error.error;

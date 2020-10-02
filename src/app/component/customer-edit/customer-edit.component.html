@@ -3,30 +3,44 @@
     {{msg}}
   </p>
 </div>
+<div class="card bg-dark text-white" *ngIf="customer">
+  <div class="card-header"><h4>Customer edition form</h4></div>
+    <div class="card-body">
+    <form #customerForm="ngForm">
+      <div class="form-group">
+        <input class="form-control"  disabled="true" type="text" name="email"     id="email"    placeholder="Email"     [(ngModel)]="customer.email"/><br/>
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="text" name="name"      id="name"     placeholder="Name"      [(ngModel)]="customer.name"/><br/>
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="text" name="address"   id="address"  placeholder="Address"   [(ngModel)]="customer.address"/><br/>
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="text" name="phone"     id="phone"    placeholder="phone"     [(ngModel)]="customer.phone"/><br/>
+      </div>
+      <div class="form-group">
+        <input class="form-control" type="text" name="token"     id="token"    placeholder="Token"     [(ngModel)]="customer.token"/><br/>
+      </div>
+      <div class="form-group">
+        <select class="form-control" [(ngModel)]="customer.enable" name="enable">
+          <option *ngFor="let enable of enables" [value]="enable.id">
+            {{enable.name}}
+          </option>
+        </select>
+      </div>
 
-<div *ngIf="customer">
-  <form #customerForm="ngForm">
-    <input type="text" name="email"     id="email"    placeholder="Email"     [(ngModel)]="customer.email"/><br/>
-    <input type="text" name="name"      id="name"     placeholder="Name"      [(ngModel)]="customer.name"/><br/>
-    <input type="text" name="address"   id="address"  placeholder="Address"   [(ngModel)]="customer.address"/><br/>
-    <input type="text" name="phone"     id="phone"    placeholder="phone"     [(ngModel)]="customer.phone"/><br/>
-    <input type="text" name="token"     id="token"    placeholder="Token"     [(ngModel)]="customer.token"/><br/>
+      <button class="btn btn-primary"  (click)="update()">
+        Update
+      </button>
+      <button class="btn btn-danger mx-2" (click)="delete()">
+        Delete
+      </button>
+      <button class="btn btn-info" routerLink="/customer-list">
+        Cancel
+      </button>
 
-    <select [(ngModel)]="customer.enable" name="enable">
-      <option *ngFor="let enable of enables" [value]="enable.id">
-        {{enable.name}}
-      </option>
-    </select><br/>
-
-    <button (click)="update()">
-      Update
-    </button>
-    <button (click)="delete()">
-      Delete
-    </button>
-    <button routerLink="/customer-list">
-      Cancel
-    </button>
-
-  </form>
+    </form>
+  </div>
 </div>
+
