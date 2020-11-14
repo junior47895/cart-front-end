@@ -1,0 +1,108 @@
+<div *ngIf="showMsg">
+  <p *ngFor="let msg of messages">
+    {{msg}}
+  </p>
+</div>
+<div class="row">
+  <div class="col-md-8" *ngIf="license" style="margin-top: 2em;">
+    <div class="card bg-dark text-white"  >
+      <div class="card-header"><h4>License creation form</h4></div>
+        <div class="card-body">
+        <form #customerForm="ngForm">
+          <div class="form-group row">
+            <label for="serialNumber" class="col-sm-8 col-form-label">Serial number:</label>
+            <div class="col-sm-12">
+              <input class="form-control"
+              type="number"
+              name="serialNumber"
+              id="serialNumber"
+              placeholder="Serial number"
+              [(ngModel)]="license.serialNumber"/>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="company" class="col-sm-8 col-form-label">Company name:</label>
+            <div class="col-sm-12">
+              <input class="form-control"
+              type="text"
+              name="company"
+              id="company"
+              placeholder="Company name"
+              [(ngModel)]="license.company"/>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="softwareName" class="col-sm-8 col-form-label">Software name:</label>
+            <div class="col-sm-12">
+              <input class="form-control"
+              type="text"
+              name="softwareName"
+              id="softwareName"
+              placeholder="Software name"
+              [(ngModel)]="license.softwareName"/>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="licenseType" class="col-sm-8 col-form-label">License type:</label>
+            <div class="col-sm-12">
+              <input class="form-control"
+              type="text"
+              name="licenseType"
+              id="licenseType"
+              placeholder="License type"
+              [(ngModel)]="license.licenseType"/>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="expirationDays" class="col-sm-8 col-form-label">License expiration days:</label>
+            <div class="col-sm-12">
+              <input class="form-control"
+              type="number"
+              name="expirationDays"
+              id="expirationDays"
+              placeholder="License expiration days"
+              [(ngModel)]="license.expirationDays"/>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="enable" class="col-md-8 col-form-label">License status:</label>
+            <div class="col-md-12">
+              <select class="form-control" [(ngModel)]="license.licenseStatus" name="licenseType">
+                <option *ngFor="let enable of enables" [value]="enable.id">
+                  {{enable.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <button class="btn btn-primary"  (click)="save()">
+            Save license
+          </button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4" *ngIf="keyGenerated" style="margin-top: 2EM;">
+    <div class="card border-dark mb-3">
+      <h5 class="card-header">Coded key </h5>
+      <div class="card-body">
+        <p class="card-text">The key for the license with serial number <strong>{{license.serialNumber}}</strong>, was successfully created.
+        <br>With this key you can validate the license created
+        <br>Keep it, as it is not possible to generate a new one for this license</p>
+
+        <button class="btn btn-danger"  (click)="downloadKeyLicense(license.publicKeyEncode)">
+          Download again!
+        </button>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+

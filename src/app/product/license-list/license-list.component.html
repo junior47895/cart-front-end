@@ -1,0 +1,35 @@
+
+<div *ngIf="licenses">
+  <h2 style="display: inline-block;">Licenses list</h2>
+  <h3 class="total-records">Total licenses: <span class="badge badge-warning">{{licenses.length}}</span> </h3>
+</div>
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Serial number</th>
+      <th>Company</th>
+      <th>Software name</th>
+      <th>License status</th>
+      <th>License type</th>
+      <th>Creation date</th>
+      <th>Expiration dayss</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let license of licenses">
+      <td>{{license.serialNumber}}</td>
+      <td>{{license.company}}</td>
+      <td>{{license.softwareName}}</td>
+      <td>{{license.licenseStatus}}</td>
+      <td>{{license.licenseType}}</td>
+      <td>{{license.creationDate | date:"EEEE dd, MMMM yyyy"}}</td>
+      <td>{{license.expirationDays}}</td>
+      <td>
+        <a class="btn btn-success btn-sm my-1" style="width: 100%;" [routerLink]="['/license-validation',license.serialNumber]">Verify license</a>
+        <a class="btn btn-primary btn-sm my-1" style="width: 100%;" [routerLink]="['/license-edit',license.serialNumber]">Edit license</a>
+        <a class="btn btn-danger btn-sm my-1" style="color: white; width: 100%;" type="button" (click)="delete(license)" ><fa name="cog" animation="spin"></fa>Delete license</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
